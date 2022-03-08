@@ -10,22 +10,28 @@ class OrderForm extends Component {
     };
   }
   handleNameChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-    
+      e.preventDefault();
+    console.log(e.target.value)
+    this.setState({ [e.target.name]:  e.target.value });
+    console.log(this.state.name)
   }
 
   handleIngredientChange = e => {
     e.preventDefault();
     this.setState({ ingredients: [...this.state.ingredients, e.target.name] });
   }
+  
 
   handleSubmit = e => {
     e.preventDefault();
-    const newOrder = {
-      ...this.state
+    if(this.state.name && (this.state.ingredients.length > 0)) {
+      const newOrder = {
+        id: Date.now(),
+        ...this.state
+      }
+      this.props.addOrder(newOrder)
+      this.clearInputs();
     }
-    this.props.addOrder(newOrder)
-    this.clearInputs();
   }
 
   clearInputs = () => {

@@ -6,7 +6,7 @@ const Orders = props => {
   const orderEls = props.orders.map(order => {
     if(order) {
       return (
-        <div className="order" key={order.id + '-ord'} >
+        <div className="order" key={order.id} >
           <h3>{order.name}</h3>
           <ul className="ingredient-list">
             {order.ingredients.map(ingredient => {
