@@ -11,9 +11,7 @@ class OrderForm extends Component {
   }
   handleNameChange = e => {
       e.preventDefault();
-    console.log(e.target.value)
     this.setState({ [e.target.name]:  e.target.value });
-    console.log(this.state.name)
   }
 
   handleIngredientChange = e => {
@@ -51,6 +49,7 @@ class OrderForm extends Component {
     return (
       <form>
         <input
+          className='enter-name'
           type='text'
           placeholder='Name'
           name='name'
@@ -59,9 +58,8 @@ class OrderForm extends Component {
         />
 
         { ingredientButtons }
-        {console.log(this.state.ingredients)}
 
-        <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+        <p className='order-details'>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
         <button onClick={e => this.handleSubmit(e)}>
           Submit Order
