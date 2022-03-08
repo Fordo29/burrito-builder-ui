@@ -9,10 +9,22 @@ class OrderForm extends Component {
       ingredients: []
     };
   }
+  handleNameChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+    
+  }
 
+  handleIngredientChange = e => {
+    e.preventDefault();
+    this.setState({ ingredients: [...this.state.ingredients, e.target.name] });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
+    const newOrder = {
+      ...this.state
+    }
+    this.props.addOrder(newOrder)
     this.clearInputs();
   }
 
@@ -41,6 +53,7 @@ class OrderForm extends Component {
         />
 
         { ingredientButtons }
+        {console.log(this.state.ingredients)}
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
